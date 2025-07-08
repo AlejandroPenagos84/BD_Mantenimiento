@@ -2,10 +2,8 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.implemetaciones.contratoClienteDAOImpl;
 import com.example.backend.DAOs.interfaces.contratoClienteDAO;
-import com.example.backend.DAOs.interfaces.contratoDAO;
 import com.example.backend.model.conexion.conexionBD;
 import com.example.backend.modelDTO.contratoClienteDTO;
-import com.example.backend.modelDTO.contratoDTO;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
