@@ -25,7 +25,7 @@ public class equipo_clienteDAOImpl implements equipo_clienteDAO {
                 return mapResultSetToEquipoCliente(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class equipo_clienteDAOImpl implements equipo_clienteDAO {
                 equipos.add(mapResultSetToEquipoCliente(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return equipos;
     }
@@ -66,7 +66,7 @@ public class equipo_clienteDAOImpl implements equipo_clienteDAO {
             stmt.setString(7, equipo.getK_id_modelo());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -91,7 +91,7 @@ public class equipo_clienteDAOImpl implements equipo_clienteDAO {
             stmt.setString(7, equipo.getK_id_equipo_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -102,7 +102,7 @@ public class equipo_clienteDAOImpl implements equipo_clienteDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

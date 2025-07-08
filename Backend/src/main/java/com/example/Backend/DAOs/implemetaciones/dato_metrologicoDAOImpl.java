@@ -25,7 +25,7 @@ public class dato_metrologicoDAOImpl implements dato_metrologicoDAO {
                 return mapResultSetToDato(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class dato_metrologicoDAOImpl implements dato_metrologicoDAO {
                 datos.add(mapResultSetToDato(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return datos;
     }
@@ -54,7 +54,7 @@ public class dato_metrologicoDAOImpl implements dato_metrologicoDAO {
             stmt.setString(3, dato.getK_id_tipo_equipo());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -68,7 +68,7 @@ public class dato_metrologicoDAOImpl implements dato_metrologicoDAO {
             stmt.setString(4, dato.getK_id_tipo_equipo());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -79,7 +79,7 @@ public class dato_metrologicoDAOImpl implements dato_metrologicoDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

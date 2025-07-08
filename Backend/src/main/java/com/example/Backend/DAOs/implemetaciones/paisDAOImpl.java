@@ -25,7 +25,7 @@ public class paisDAOImpl implements paisDAO {
                 return mapResultSetToPais(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class paisDAOImpl implements paisDAO {
                 paises.add(mapResultSetToPais(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return paises;
     }
@@ -53,7 +53,7 @@ public class paisDAOImpl implements paisDAO {
             stmt.setString(2, pais.getN_nombre_pais());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class paisDAOImpl implements paisDAO {
             stmt.setString(2, pais.getK_id_pais());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class paisDAOImpl implements paisDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

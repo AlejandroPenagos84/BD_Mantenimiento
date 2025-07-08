@@ -25,7 +25,7 @@ public class marcaDAOImpl implements marcaDAO {
                 return mapResultSetToMarca(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class marcaDAOImpl implements marcaDAO {
                 marcas.add(mapResultSetToMarca(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return marcas;
     }
@@ -53,7 +53,7 @@ public class marcaDAOImpl implements marcaDAO {
             stmt.setString(2, marca.getN_nombre_marca());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class marcaDAOImpl implements marcaDAO {
             stmt.setString(2, marca.getK_id_marca());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class marcaDAOImpl implements marcaDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

@@ -25,7 +25,7 @@ public class verificacion_tecnicaDAOImpl implements verificacion_tecnicaDAO {
                 return mapResultSetToVerificacion(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class verificacion_tecnicaDAOImpl implements verificacion_tecnicaDAO {
                 verificaciones.add(mapResultSetToVerificacion(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return verificaciones;
     }
@@ -53,7 +53,7 @@ public class verificacion_tecnicaDAOImpl implements verificacion_tecnicaDAO {
             stmt.setString(2, verificacion.getT_descripcion());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class verificacion_tecnicaDAOImpl implements verificacion_tecnicaDAO {
             stmt.setString(2, verificacion.getK_id_verificacion());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class verificacion_tecnicaDAOImpl implements verificacion_tecnicaDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

@@ -25,7 +25,7 @@ public class correo_clienteDAOImpl implements correo_clienteDAO {
                 return mapResultSetToCorreoCliente(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class correo_clienteDAOImpl implements correo_clienteDAO {
                 correos.add(mapResultSetToCorreoCliente(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return correos;
     }
@@ -53,7 +53,7 @@ public class correo_clienteDAOImpl implements correo_clienteDAO {
             stmt.setString(2, correo.getK_id_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class correo_clienteDAOImpl implements correo_clienteDAO {
             stmt.setString(2, correo.getK_id_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class correo_clienteDAOImpl implements correo_clienteDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

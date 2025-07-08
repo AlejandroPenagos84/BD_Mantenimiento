@@ -25,7 +25,7 @@ public class cotizacionDAOImpl implements cotizacionDAO {
                 return mapResultSetToCotizacion(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class cotizacionDAOImpl implements cotizacionDAO {
                 cotizaciones.add(mapResultSetToCotizacion(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return cotizaciones;
     }
@@ -59,7 +59,7 @@ public class cotizacionDAOImpl implements cotizacionDAO {
             stmt.setString(8, cotizacion.getT_estado_cotizacion());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -77,7 +77,7 @@ public class cotizacionDAOImpl implements cotizacionDAO {
             stmt.setString(8, cotizacion.getK_id_equipo_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -88,7 +88,7 @@ public class cotizacionDAOImpl implements cotizacionDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

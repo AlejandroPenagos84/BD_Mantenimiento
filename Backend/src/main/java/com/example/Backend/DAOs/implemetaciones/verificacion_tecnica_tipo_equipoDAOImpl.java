@@ -25,7 +25,7 @@ public class verificacion_tecnica_tipo_equipoDAOImpl implements verificacion_tec
                 return mapResultSetToVtte(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class verificacion_tecnica_tipo_equipoDAOImpl implements verificacion_tec
                 list.add(mapResultSetToVtte(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return list;
     }
@@ -53,7 +53,7 @@ public class verificacion_tecnica_tipo_equipoDAOImpl implements verificacion_tec
             stmt.setString(2, vtte.getK_id_tipo_equipo());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class verificacion_tecnica_tipo_equipoDAOImpl implements verificacion_tec
             stmt.setString(2, vtte.getK_id_verificacion());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class verificacion_tecnica_tipo_equipoDAOImpl implements verificacion_tec
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

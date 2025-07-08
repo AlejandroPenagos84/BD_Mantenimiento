@@ -56,7 +56,7 @@ public class personaService {
                 throw new RuntimeException("persona con ID " + id + " no encontrado.");
             }
             // entity.setId(id); // Descomenta si tu modelo tiene setter de ID
-            dao.insert(entity);
+            dao.update(entity);
         } catch (SQLException e) {
             throw new RuntimeException("Error al actualizar la entidad", e);
         }

@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class cliente implements Serializable {
 
-    private Integer k_id_cliente;
+    private String k_id_cliente;
     private String n_tipo_identificacion;
     private String n_razon_social;
     private String n_tipo_cliente;

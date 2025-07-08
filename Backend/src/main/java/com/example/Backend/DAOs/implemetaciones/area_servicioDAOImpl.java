@@ -26,7 +26,7 @@ public class area_servicioDAOImpl implements area_servicioDAO {
                 return mapResultSetToArea_servicio(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -41,7 +41,7 @@ public class area_servicioDAOImpl implements area_servicioDAO {
                 area_servico.add(mapResultSetToArea_servicio(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return area_servico;
     }
@@ -56,7 +56,7 @@ public class area_servicioDAOImpl implements area_servicioDAO {
             stmt.setString(3, area_servicion.getK_id_sede());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -72,7 +72,7 @@ public class area_servicioDAOImpl implements area_servicioDAO {
             stmt.setString(3, area_servicio.getK_id_sede());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -84,7 +84,7 @@ public class area_servicioDAOImpl implements area_servicioDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

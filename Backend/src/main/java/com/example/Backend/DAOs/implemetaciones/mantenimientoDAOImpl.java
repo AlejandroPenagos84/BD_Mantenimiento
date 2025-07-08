@@ -25,7 +25,7 @@ public class mantenimientoDAOImpl implements mantenimientoDAO {
                 return mapResultSetToMantenimiento(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class mantenimientoDAOImpl implements mantenimientoDAO {
                 mantenimientos.add(mapResultSetToMantenimiento(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return mantenimientos;
     }
@@ -59,7 +59,7 @@ public class mantenimientoDAOImpl implements mantenimientoDAO {
             stmt.setString(4, mantenimiento.getK_identificador());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -77,7 +77,7 @@ public class mantenimientoDAOImpl implements mantenimientoDAO {
             stmt.setString(4, mantenimiento.getK_id_mantenimiento());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -88,7 +88,7 @@ public class mantenimientoDAOImpl implements mantenimientoDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

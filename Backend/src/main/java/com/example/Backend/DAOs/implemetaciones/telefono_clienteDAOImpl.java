@@ -25,7 +25,7 @@ public class telefono_clienteDAOImpl implements telefono_clienteDAO {
                 return mapResultSetToTelefonoCliente(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class telefono_clienteDAOImpl implements telefono_clienteDAO {
                 telefonos.add(mapResultSetToTelefonoCliente(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return telefonos;
     }
@@ -53,7 +53,7 @@ public class telefono_clienteDAOImpl implements telefono_clienteDAO {
             stmt.setString(2, telefono.getK_id_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class telefono_clienteDAOImpl implements telefono_clienteDAO {
             stmt.setString(2, telefono.getK_id_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class telefono_clienteDAOImpl implements telefono_clienteDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
