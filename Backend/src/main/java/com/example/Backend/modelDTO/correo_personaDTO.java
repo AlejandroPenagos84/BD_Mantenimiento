@@ -11,7 +11,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class correo_personaDTO implements Serializable {
 
-    private String n_correo;
+    private String n_correo_persona;
     private String k_identificador;
 
 }
