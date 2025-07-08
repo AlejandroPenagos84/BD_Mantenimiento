@@ -47,7 +47,7 @@ public class paisDAOImpl implements paisDAO {
 
     @Override
     public void insert(paisDTO pais) {
-        String sql = "INSERT INTO pais (k_id_pais, n_nombre) VALUES (?, ?)";
+        String sql = "INSERT INTO pais (k_id_pais, n_nombre_pais) VALUES (?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, pais.getK_id_pais());
             stmt.setString(2, pais.getN_nombre_pais());
@@ -83,7 +83,7 @@ public class paisDAOImpl implements paisDAO {
     private paisDTO mapResultSetToPais(ResultSet rs) throws SQLException {
         paisDTO pais = new paisDTO();
         pais.setK_id_pais(rs.getString("k_id_pais"));
-        pais.setN_nombre_pais(rs.getString("n_nombre"));
+        pais.setN_nombre_pais(rs.getString("n_nombre_pais"));
         return pais;
     }
 }

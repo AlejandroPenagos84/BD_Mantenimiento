@@ -47,7 +47,7 @@ public class ciudadDAOImpl implements ciudadDAO {
 
     @Override
     public void insert(ciudadDTO ciudad) {
-        String sql = "INSERT INTO ciudad (k_id_ciudad, n_nombre, k_id_pais) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO ciudad (k_id_ciudad, n_nombre_ciudad, k_id_pais) VALUES (?, ?, ?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, ciudad.getK_id_ciudad());
             stmt.setString(2, ciudad.getN_nombre());
