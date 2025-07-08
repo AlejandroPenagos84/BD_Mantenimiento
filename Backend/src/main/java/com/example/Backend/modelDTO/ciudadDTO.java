@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 public class ciudadDTO implements Serializable {
 
-    private Integer k_id_ciudad;
+    private String k_id_ciudad;
     private String n_nombre;
     private String k_id_pais;
 }

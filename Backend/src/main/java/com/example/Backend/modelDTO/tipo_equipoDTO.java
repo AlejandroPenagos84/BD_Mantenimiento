@@ -19,6 +19,6 @@ public class tipo_equipoDTO implements Serializable {
     private Double d_amperaje;
     private String t_tecnologia_predominante;
     private Boolean b_verificable;
-    private Integer m_valor_unitario_mantenimiento;
+    private Double m_valor_unitario_mantenimiento;
     private String n_tipo_verificacion;
 }

@@ -13,5 +13,5 @@ public class dato_metrologicoDTO implements Serializable {
 
     private Double d_valor;
     private String n_tipo;
-    private Integer k_id_tipo_equipo;
+    private String k_id_tipo_equipo;
 }
