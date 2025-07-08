@@ -1,10 +1,10 @@
 package com.example.backend.DAOs.interfaces;
+import com.example.backend.modelDTO.HojaDeVidaDTO;
+
+import java.sql.SQLException;
 import java.util.List;
 
-public interface CRUDs <T, ID> {
-    T findById(ID id);
-    List<T> findAll();
-    void insert(T entity);
-    void update(T entity);
-    void deleteById(ID id);
+public interface HojaDeVidaDAO{
+    List<HojaDeVidaDTO> findAllByCliente(String id_cliente) throws SQLException;
+    HojaDeVidaDTO findById(String idEquipoCliente) throws SQLException;
 }

@@ -1,5 +1,4 @@
-package com.example.backend.model;
-import com.example.backend.modelDTO.*;
+package com.example.backend.modelDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HojaDeVida implements Serializable {
+public class HojaDeVidaDTO implements Serializable {
     // Columnas de la vista TodoEquipoCliente
     private String k_id_equipo_cliente;
     private String k_serie;
@@ -49,4 +48,5 @@ public class HojaDeVida implements Serializable {
     // Relaciones uno a muchos
     private List<verificacion_tecnicaDTO> verificacion_tecnica;
     private List<reporte_servicioDTO> reporte_servicio;
+
 }
