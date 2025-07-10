@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.modelDTO.contratoDTO;
 import com.example.backend.service.contratoService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +20,20 @@ public class contratoController {
     private contratoService contratoService;
 
     @GetMapping
-    public ResponseEntity<List<contratoDTO>> getAllItems(
-            @RequestParam String user,
-            @RequestParam String password) {
+    public ResponseEntity<List<contratoDTO>> getAllItems(HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         List<contratoDTO> items = contratoService.getAll(user, password);
         return ResponseEntity.ok(items);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<contratoDTO> getItemById(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         Optional<contratoDTO> item = contratoService.getById(user, password, id);
         return item.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
@@ -38,9 +41,10 @@ public class contratoController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody contratoDTO contrato) {
+            @RequestBody contratoDTO contrato, HttpSession session) {
+
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
         contratoService.save(user, password, contrato);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -48,10 +52,11 @@ public class contratoController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody contratoDTO contrato) {
+            @RequestBody contratoDTO contrato, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             contratoService.update(user, password, id, contrato);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -61,10 +66,11 @@ public class contratoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             contratoService.deleteById(user, password, id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {

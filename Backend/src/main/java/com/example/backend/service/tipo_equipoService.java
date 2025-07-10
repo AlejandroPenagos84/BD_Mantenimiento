@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.tipo_equipoDAO;
 import com.example.backend.DAOs.implemetaciones.tipo_equipoDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.tipo_equipoDTO;
 import org.springframework.stereotype.Service;
 

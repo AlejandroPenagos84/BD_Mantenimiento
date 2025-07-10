@@ -25,7 +25,7 @@ public class tipo_equipoDAOImpl implements tipo_equipoDAO {
                 return mapResultSetToTipoEquipo(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class tipo_equipoDAOImpl implements tipo_equipoDAO {
                 tipos.add(mapResultSetToTipoEquipo(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return tipos;
     }
@@ -69,7 +69,7 @@ public class tipo_equipoDAOImpl implements tipo_equipoDAO {
             stmt.setString(10, tipo.getN_tipo_verificacion());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -97,7 +97,7 @@ public class tipo_equipoDAOImpl implements tipo_equipoDAO {
             stmt.setString(10, tipo.getK_id_tipo_equipo());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -108,7 +108,7 @@ public class tipo_equipoDAOImpl implements tipo_equipoDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

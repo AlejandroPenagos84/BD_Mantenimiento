@@ -28,7 +28,7 @@ public class clienteDAOImpl implements clienteDAO {
                 return mapResultSetToCliente(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -43,7 +43,7 @@ public class clienteDAOImpl implements clienteDAO {
                 clientes.add(mapResultSetToCliente(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return clientes;
     }
@@ -60,7 +60,7 @@ public class clienteDAOImpl implements clienteDAO {
             stmt.setString(5, cliente.getK_id_pais());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -80,7 +80,7 @@ public class clienteDAOImpl implements clienteDAO {
             stmt.setString(5, cliente.getK_id_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -92,7 +92,7 @@ public class clienteDAOImpl implements clienteDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -106,7 +106,7 @@ public class clienteDAOImpl implements clienteDAO {
                 return mapResultSetToCliente(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }

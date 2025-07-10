@@ -25,7 +25,7 @@ public class sedeDAOImpl implements sedeDAO {
                 return mapResultSetToSede(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class sedeDAOImpl implements sedeDAO {
                 sedes.add(mapResultSetToSede(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return sedes;
     }
@@ -58,7 +58,7 @@ public class sedeDAOImpl implements sedeDAO {
             stmt.setString(7, sede.getK_id_ciudad());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -75,7 +75,7 @@ public class sedeDAOImpl implements sedeDAO {
             stmt.setString(7, sede.getK_id_sede());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -86,7 +86,7 @@ public class sedeDAOImpl implements sedeDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

@@ -25,7 +25,7 @@ public class modeloDAOImpl implements modeloDAO {
                 return mapResultSetToModelo(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class modeloDAOImpl implements modeloDAO {
                 modelos.add(mapResultSetToModelo(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return modelos;
     }
@@ -55,7 +55,7 @@ public class modeloDAOImpl implements modeloDAO {
             stmt.setString(4, modelo.getK_id_equipo());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -69,7 +69,7 @@ public class modeloDAOImpl implements modeloDAO {
             stmt.setString(4, modelo.getK_id_modelo());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -80,7 +80,7 @@ public class modeloDAOImpl implements modeloDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

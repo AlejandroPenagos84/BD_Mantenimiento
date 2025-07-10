@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.area_servicioDAO;
 import com.example.backend.DAOs.implemetaciones.area_servicioDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.area_servicioDTO;
 import org.springframework.stereotype.Service;
 

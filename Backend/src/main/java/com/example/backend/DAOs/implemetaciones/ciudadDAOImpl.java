@@ -25,7 +25,7 @@ public class ciudadDAOImpl implements ciudadDAO {
                 return mapResultSetToCiudad(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class ciudadDAOImpl implements ciudadDAO {
                 ciudades.add(mapResultSetToCiudad(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return ciudades;
     }
@@ -54,7 +54,7 @@ public class ciudadDAOImpl implements ciudadDAO {
             stmt.setString(3, ciudad.getK_id_pais());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -67,7 +67,7 @@ public class ciudadDAOImpl implements ciudadDAO {
             stmt.setString(3, ciudad.getK_id_ciudad());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -78,7 +78,7 @@ public class ciudadDAOImpl implements ciudadDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

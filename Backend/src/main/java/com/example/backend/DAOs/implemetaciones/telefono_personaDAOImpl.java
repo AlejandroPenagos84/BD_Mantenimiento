@@ -25,7 +25,7 @@ public class telefono_personaDAOImpl implements telefono_personaDAO {
                 return mapResultSetToTelefonoPersona(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class telefono_personaDAOImpl implements telefono_personaDAO {
                 telefonos.add(mapResultSetToTelefonoPersona(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return telefonos;
     }
@@ -53,7 +53,7 @@ public class telefono_personaDAOImpl implements telefono_personaDAO {
             stmt.setString(2, telefono.getK_identificador());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class telefono_personaDAOImpl implements telefono_personaDAO {
             stmt.setString(2, telefono.getK_identificador());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class telefono_personaDAOImpl implements telefono_personaDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

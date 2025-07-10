@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.correo_personaDAO;
 import com.example.backend.DAOs.implemetaciones.correo_personaDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.correo_personaDTO;
 import org.springframework.stereotype.Service;
 

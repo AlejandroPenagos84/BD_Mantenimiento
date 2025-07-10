@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.modelDTO.ciudadDTO;
 import com.example.backend.service.ciudadService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +20,20 @@ public class ciudadController {
     private ciudadService ciudadService;
 
     @GetMapping
-    public ResponseEntity<List<ciudadDTO>> getAllItems(
-            @RequestParam String user,
-            @RequestParam String password) {
+    public ResponseEntity<List<ciudadDTO>> getAllItems(HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         List<ciudadDTO> items = ciudadService.getAll(user, password);
         return ResponseEntity.ok(items);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ciudadDTO> getItemById(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         Optional<ciudadDTO> item = ciudadService.getById(user, password, id);
         return item.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
@@ -38,9 +41,10 @@ public class ciudadController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody ciudadDTO ciudad) {
+            @RequestBody ciudadDTO ciudad, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         ciudadService.save(user, password, ciudad);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -48,10 +52,11 @@ public class ciudadController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody ciudadDTO ciudad) {
+            @RequestBody ciudadDTO ciudad, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             ciudadService.update(user, password, id, ciudad);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -62,9 +67,11 @@ public class ciudadController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             ciudadService.deleteById(user, password, id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {

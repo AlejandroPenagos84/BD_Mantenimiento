@@ -25,7 +25,7 @@ public class personaDAOImpl implements personaDAO {
                 return mapResultSetToPersona(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class personaDAOImpl implements personaDAO {
                 personas.add(mapResultSetToPersona(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return personas;
     }
@@ -63,7 +63,7 @@ public class personaDAOImpl implements personaDAO {
             }
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -85,7 +85,7 @@ public class personaDAOImpl implements personaDAO {
             stmt.setString(8, persona.getK_identificador());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -96,7 +96,7 @@ public class personaDAOImpl implements personaDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

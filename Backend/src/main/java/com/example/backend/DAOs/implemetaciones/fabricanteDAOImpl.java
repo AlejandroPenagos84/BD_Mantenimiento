@@ -25,7 +25,7 @@ public class fabricanteDAOImpl implements fabricanteDAO {
                 return mapResultSetToFabricante(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class fabricanteDAOImpl implements fabricanteDAO {
                 fabricantes.add(mapResultSetToFabricante(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return fabricantes;
     }
@@ -54,7 +54,7 @@ public class fabricanteDAOImpl implements fabricanteDAO {
             stmt.setString(3, fabricante.getK_id_pais());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -67,7 +67,7 @@ public class fabricanteDAOImpl implements fabricanteDAO {
             stmt.setString(3, fabricante.getK_id_fabricante());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -78,7 +78,7 @@ public class fabricanteDAOImpl implements fabricanteDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

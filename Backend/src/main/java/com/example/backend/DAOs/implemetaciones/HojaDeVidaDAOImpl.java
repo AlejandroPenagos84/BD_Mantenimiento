@@ -1,7 +1,7 @@
 package com.example.backend.DAOs.implemetaciones;
 
-import com.example.backend.DAOs.interfaces.HojaDeVidaDAO;
-import com.example.backend.modelDTO.HojaDeVidaDTO;
+import com.example.backend.DAOs.interfaces.hojaDeVidaDAO;
+import com.example.backend.modelDTO.hojaDeVidaDTO;
 import com.example.backend.modelDTO.verificacion_tecnicaDTO;
 import com.example.backend.modelDTO.reporte_servicioDTO;
 
@@ -12,24 +12,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HojaDeVidaDAOImpl implements HojaDeVidaDAO {
+public class hojaDeVidaDAOImpl implements hojaDeVidaDAO {
 
     private final Connection conn;
 
-    public HojaDeVidaDAOImpl(Connection conn) {
+    public hojaDeVidaDAOImpl(Connection conn) {
         this.conn = conn;
     }
 
     @Override
-    public List<HojaDeVidaDTO> findAllByCliente(String idCliente) throws SQLException {
+    public List<hojaDeVidaDTO> findAllByCliente(String idCliente) throws SQLException {
         String sql = "SELECT * FROM TodoEquipoCliente WHERE k_id_cliente = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, idCliente); // 🔧 Se corrige el parámetro
-
+            stmt.setString(1, idCliente);
             try (ResultSet rs = stmt.executeQuery()) {
-                List<HojaDeVidaDTO> lista = new ArrayList<>();
+                List<hojaDeVidaDTO> lista = new ArrayList<>();
                 while (rs.next()) {
-                    HojaDeVidaDTO dto = mapRow(rs);
+                    hojaDeVidaDTO dto = mapRow(rs);
                     String equipoId = dto.getK_id_equipo_cliente();
                     dto.setVerificacion_tecnica(obtenerVerificacionesTecnicas(equipoId));
                     dto.setReporte_servicio(obtenerReportesServicio(equipoId));
@@ -40,15 +39,14 @@ public class HojaDeVidaDAOImpl implements HojaDeVidaDAO {
         }
     }
 
-
     @Override
-    public HojaDeVidaDTO findById(String idEquipoCliente) throws SQLException {
+    public hojaDeVidaDTO findById(String idEquipoCliente) throws SQLException {
         String sql = "SELECT * FROM TodoEquipoCliente WHERE k_id_equipo_cliente = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, idEquipoCliente);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    HojaDeVidaDTO dto = mapRow(rs);
+                    hojaDeVidaDTO dto = mapRow(rs);
                     dto.setVerificacion_tecnica(obtenerVerificacionesTecnicas(idEquipoCliente));
                     dto.setReporte_servicio(obtenerReportesServicio(idEquipoCliente));
                     return dto;
@@ -58,8 +56,8 @@ public class HojaDeVidaDAOImpl implements HojaDeVidaDAO {
         return null;
     }
 
-    private HojaDeVidaDTO mapRow(ResultSet rs) throws SQLException {
-        HojaDeVidaDTO dto = new HojaDeVidaDTO();
+    private hojaDeVidaDTO mapRow(ResultSet rs) throws SQLException {
+        hojaDeVidaDTO dto = new hojaDeVidaDTO();
         dto.setK_id_equipo_cliente(rs.getString("k_id_equipo_cliente"));
         dto.setK_serie(rs.getString("k_serie"));
         dto.setF_fecha_compra(rs.getDate("f_fecha_compra"));
@@ -114,7 +112,7 @@ public class HojaDeVidaDAOImpl implements HojaDeVidaDAO {
                     verificacion_tecnicaDTO dto = new verificacion_tecnicaDTO();
                     dto.setK_id_verificacion(rs.getString("k_id_verificacion"));
                     dto.setT_descripcion(rs.getString("t_descripcion"));
-                    // Completa con más campos si los tienes
+                    // Agrega más campos si los necesitas
                     lista.add(dto);
                 }
                 return lista;
@@ -144,7 +142,7 @@ public class HojaDeVidaDAOImpl implements HojaDeVidaDAO {
                     dto.setD_valor_equipo(rs.getDouble("d_valor_equipo"));
                     dto.setD_valor_patron(rs.getDouble("d_valor_patron"));
                     dto.setT_resultado_verificacion_tecnica(rs.getString("t_resultado_verificacion_tecnica"));
-                    // Completa con más campos si los tienes
+                    // Agrega más campos si los necesitas
                     lista.add(dto);
                 }
                 return lista;

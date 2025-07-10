@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.representante_legalDAO;
 import com.example.backend.DAOs.implemetaciones.representante_legalDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.representante_legalDTO;
 import org.springframework.stereotype.Service;
 

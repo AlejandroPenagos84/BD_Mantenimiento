@@ -25,7 +25,7 @@ public class contratoDAOImpl implements contratoDAO {
                 return mapResultSetToContrato(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class contratoDAOImpl implements contratoDAO {
                 contratos.add(mapResultSetToContrato(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return contratos;
     }
@@ -56,7 +56,7 @@ public class contratoDAOImpl implements contratoDAO {
             stmt.setString(5, contrato.getT_observaciones());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -71,7 +71,7 @@ public class contratoDAOImpl implements contratoDAO {
             stmt.setString(5, contrato.getK_id_contrato());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -82,7 +82,7 @@ public class contratoDAOImpl implements contratoDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

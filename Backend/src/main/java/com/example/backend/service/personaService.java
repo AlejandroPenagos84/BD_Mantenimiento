@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.personaDAO;
 import com.example.backend.DAOs.implemetaciones.personaDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.personaDTO;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Service
 public class personaService {
+
 
     public List<personaDTO> getAll(String user, String password) {
         conexionBD conexionBD = new conexionBD(user, password);
@@ -56,7 +57,7 @@ public class personaService {
                 throw new RuntimeException("persona con ID " + id + " no encontrado.");
             }
             // entity.setId(id); // Descomenta si tu modelo tiene setter de ID
-            dao.insert(entity);
+            dao.update(entity);
         } catch (SQLException e) {
             throw new RuntimeException("Error al actualizar la entidad", e);
         }

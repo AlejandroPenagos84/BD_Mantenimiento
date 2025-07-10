@@ -1,4 +1,4 @@
-package com.example.backend.model.conexion;
+package com.example.backend.modelDTO.conexion;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

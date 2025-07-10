@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class HojaDeVidaDTO implements Serializable {
+public class hojaDeVidaDTO implements Serializable {
     // Columnas de la vista TodoEquipoCliente
     private String k_id_equipo_cliente;
     private String k_serie;
@@ -48,5 +48,4 @@ public class HojaDeVidaDTO implements Serializable {
     // Relaciones uno a muchos
     private List<verificacion_tecnicaDTO> verificacion_tecnica;
     private List<reporte_servicioDTO> reporte_servicio;
-
 }

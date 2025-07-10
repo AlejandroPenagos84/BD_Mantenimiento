@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.modelDTO.encargadoDTO;
 import com.example.backend.service.encargadoService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +20,10 @@ public class encargadoController {
     private encargadoService encargadoService;
 
     @GetMapping
-    public ResponseEntity<List<encargadoDTO>> getAllItems(
-            @RequestParam String user,
-            @RequestParam String password) {
+    public ResponseEntity<List<encargadoDTO>> getAllItems(HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         List<encargadoDTO> items = encargadoService.getAll(user, password);
         return ResponseEntity.ok(items);
     }
@@ -29,8 +31,10 @@ public class encargadoController {
     @GetMapping("/{id}")
     public ResponseEntity<encargadoDTO> getItemById(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         Optional<encargadoDTO> item = encargadoService.getById(user, password, id);
         return item.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
@@ -38,9 +42,10 @@ public class encargadoController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody encargadoDTO encargado) {
+            @RequestBody encargadoDTO encargado, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         encargadoService.save(user, password, encargado);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -48,10 +53,11 @@ public class encargadoController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody encargadoDTO encargado) {
+            @RequestBody encargadoDTO encargado, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             encargadoService.update(user, password, id, encargado);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -62,9 +68,11 @@ public class encargadoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             encargadoService.deleteById(user, password, id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {

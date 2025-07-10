@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.modelDTO.paisDTO;
 import com.example.backend.service.paisService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +20,20 @@ public class paisController {
     private paisService paisService;
 
     @GetMapping
-    public ResponseEntity<List<paisDTO>> getAllItems(
-            @RequestParam String user,
-            @RequestParam String password) {
+    public ResponseEntity<List<paisDTO>> getAllItems(HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         List<paisDTO> items = paisService.getAll(user, password);
         return ResponseEntity.ok(items);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<paisDTO> getItemById(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         Optional<paisDTO> item = paisService.getById(user, password, id);
         return item.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
@@ -38,9 +41,10 @@ public class paisController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody paisDTO pais) {
+            @RequestBody paisDTO pais, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         paisService.save(user, password, pais);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -48,10 +52,12 @@ public class paisController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody paisDTO pais) {
+            @RequestBody paisDTO pais,HttpSession session) {
+
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             paisService.update(user, password, id, pais);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -61,10 +67,11 @@ public class paisController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             paisService.deleteById(user, password, id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {

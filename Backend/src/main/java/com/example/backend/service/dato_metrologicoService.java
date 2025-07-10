@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.dato_metrologicoDAO;
 import com.example.backend.DAOs.implemetaciones.dato_metrologicoDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.dato_metrologicoDTO;
 import org.springframework.stereotype.Service;
 

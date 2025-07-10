@@ -25,7 +25,7 @@ public class encargadoDAOImpl implements encargadoDAO {
                 return mapResultSetToEncargado(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class encargadoDAOImpl implements encargadoDAO {
                 encargados.add(mapResultSetToEncargado(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return encargados;
     }
@@ -55,7 +55,7 @@ public class encargadoDAOImpl implements encargadoDAO {
             stmt.setString(4, encargado.getK_id_sede());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -69,7 +69,7 @@ public class encargadoDAOImpl implements encargadoDAO {
             stmt.setString(4, encargado.getK_identificador());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -80,7 +80,7 @@ public class encargadoDAOImpl implements encargadoDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

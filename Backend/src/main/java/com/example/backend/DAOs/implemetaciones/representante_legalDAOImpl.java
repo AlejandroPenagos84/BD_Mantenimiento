@@ -25,7 +25,7 @@ public class representante_legalDAOImpl implements representante_legalDAO {
                 return mapResultSetToRepresentante(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class representante_legalDAOImpl implements representante_legalDAO {
                 representantes.add(mapResultSetToRepresentante(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return representantes;
     }
@@ -53,7 +53,7 @@ public class representante_legalDAOImpl implements representante_legalDAO {
             stmt.setString(2, representante.getK_id_cliente());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class representante_legalDAOImpl implements representante_legalDAO {
             stmt.setString(2, representante.getK_identificador());
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -76,7 +76,7 @@ public class representante_legalDAOImpl implements representante_legalDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 

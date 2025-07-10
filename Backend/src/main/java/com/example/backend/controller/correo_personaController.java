@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.modelDTO.correo_personaDTO;
 import com.example.backend.service.correo_personaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +20,20 @@ public class correo_personaController {
     private correo_personaService correo_personaService;
 
     @GetMapping
-    public ResponseEntity<List<correo_personaDTO>> getAllItems(
-            @RequestParam String user,
-            @RequestParam String password) {
+    public ResponseEntity<List<correo_personaDTO>> getAllItems(HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         List<correo_personaDTO> items = correo_personaService.getAll(user, password);
         return ResponseEntity.ok(items);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<correo_personaDTO> getItemById(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         Optional<correo_personaDTO> item = correo_personaService.getById(user, password, id);
         return item.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
@@ -38,9 +41,10 @@ public class correo_personaController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody correo_personaDTO correo_persona) {
+            @RequestBody correo_personaDTO correo_persona, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         correo_personaService.save(user, password, correo_persona);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -48,10 +52,11 @@ public class correo_personaController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody correo_personaDTO correo_persona) {
+            @RequestBody correo_personaDTO correo_persona, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             correo_personaService.update(user, password, id, correo_persona);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -61,10 +66,11 @@ public class correo_personaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             correo_personaService.deleteById(user, password, id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {

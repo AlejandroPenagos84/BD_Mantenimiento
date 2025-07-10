@@ -25,7 +25,7 @@ public class reporte_servicioDAOImpl implements reporte_servicioDAO {
                 return mapResultSetToReporte(rs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return null;
     }
@@ -40,7 +40,7 @@ public class reporte_servicioDAOImpl implements reporte_servicioDAO {
                 reportes.add(mapResultSetToReporte(rs));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return reportes;
     }
@@ -71,7 +71,7 @@ public class reporte_servicioDAOImpl implements reporte_servicioDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -101,7 +101,7 @@ public class reporte_servicioDAOImpl implements reporte_servicioDAO {
 
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -112,7 +112,7 @@ public class reporte_servicioDAOImpl implements reporte_servicioDAO {
             stmt.setString(1, id);
             stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
