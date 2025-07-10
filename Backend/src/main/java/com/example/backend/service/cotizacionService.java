@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.cotizacionDAO;
 import com.example.backend.DAOs.implemetaciones.cotizacionDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.cotizacionDTO;
 import org.springframework.stereotype.Service;
 

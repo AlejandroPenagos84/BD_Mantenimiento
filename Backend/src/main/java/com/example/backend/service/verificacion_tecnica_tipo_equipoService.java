@@ -2,7 +2,7 @@ package com.example.backend.service;
 
 import com.example.backend.DAOs.interfaces.verificacion_tecnica_tipo_equipoDAO;
 import com.example.backend.DAOs.implemetaciones.verificacion_tecnica_tipo_equipoDAOImpl;
-import com.example.backend.model.conexion.conexionBD;
+import com.example.backend.modelDTO.conexion.conexionBD;
 import com.example.backend.modelDTO.verificacion_tecnica_tipo_equipoDTO;
 import org.springframework.stereotype.Service;
 

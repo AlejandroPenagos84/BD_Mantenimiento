@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.modelDTO.personaDTO;
 import com.example.backend.service.personaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +20,20 @@ public class personaController {
     private personaService personaService;
 
     @GetMapping
-    public ResponseEntity<List<personaDTO>> getAllItems(
-            @RequestParam String user,
-            @RequestParam String password) {
+    public ResponseEntity<List<personaDTO>> getAllItems(HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         List<personaDTO> items = personaService.getAll(user, password);
         return ResponseEntity.ok(items);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<personaDTO> getItemById(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id,HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         Optional<personaDTO> item = personaService.getById(user, password, id);
         return item.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
@@ -38,9 +41,10 @@ public class personaController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody personaDTO persona) {
+            @RequestBody personaDTO persona,HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         personaService.save(user, password, persona);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -48,10 +52,11 @@ public class personaController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody personaDTO persona) {
+            @RequestBody personaDTO persona,HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             personaService.update(user, password, id, persona);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -62,9 +67,11 @@ public class personaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
+
             personaService.deleteById(user, password, id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {

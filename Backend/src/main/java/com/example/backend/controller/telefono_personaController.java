@@ -2,6 +2,7 @@ package com.example.backend.controller;
 
 import com.example.backend.modelDTO.telefono_personaDTO;
 import com.example.backend.service.telefono_personaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,18 +20,20 @@ public class telefono_personaController {
     private telefono_personaService telefono_personaService;
 
     @GetMapping
-    public ResponseEntity<List<telefono_personaDTO>> getAllItems(
-            @RequestParam String user,
-            @RequestParam String password) {
+    public ResponseEntity<List<telefono_personaDTO>> getAllItems(HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         List<telefono_personaDTO> items = telefono_personaService.getAll(user, password);
         return ResponseEntity.ok(items);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<telefono_personaDTO> getItemById(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         Optional<telefono_personaDTO> item = telefono_personaService.getById(user, password, id);
         return item.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
@@ -38,9 +41,10 @@ public class telefono_personaController {
 
     @PostMapping
     public ResponseEntity<Void> createItem(
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody telefono_personaDTO telefono_persona) {
+            @RequestBody telefono_personaDTO telefono_persona, HttpSession session) {
+        String user = (String) session.getAttribute("user");
+        String password = (String) session.getAttribute("password");
+
         telefono_personaService.save(user, password, telefono_persona);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -48,10 +52,12 @@ public class telefono_personaController {
     @PutMapping("/{id}")
     public ResponseEntity<Void> updateItem(
             @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password,
-            @RequestBody telefono_personaDTO telefono_persona) {
+            @RequestBody telefono_personaDTO telefono_persona,
+            HttpSession session
+            ) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
             telefono_personaService.update(user, password, id, telefono_persona);
             return ResponseEntity.ok().build();
         } catch (RuntimeException e) {
@@ -61,10 +67,10 @@ public class telefono_personaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteItem(
-            @PathVariable String id,
-            @RequestParam String user,
-            @RequestParam String password) {
+            @PathVariable String id, HttpSession session) {
         try {
+            String user = (String) session.getAttribute("user");
+            String password = (String) session.getAttribute("password");
             telefono_personaService.deleteById(user, password, id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
