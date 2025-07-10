@@ -24,8 +24,7 @@ public class hojaDeVidaDAOImpl implements hojaDeVidaDAO {
     public List<hojaDeVidaDTO> findAllByCliente(String idCliente) throws SQLException {
         String sql = "SELECT * FROM TodoEquipoCliente WHERE k_id_cliente = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, idCliente); // 🔧 Se corrige el parámetro
-
+            stmt.setString(1, idCliente);
             try (ResultSet rs = stmt.executeQuery()) {
                 List<hojaDeVidaDTO> lista = new ArrayList<>();
                 while (rs.next()) {
@@ -39,7 +38,6 @@ public class hojaDeVidaDAOImpl implements hojaDeVidaDAO {
             }
         }
     }
-
 
     @Override
     public hojaDeVidaDTO findById(String idEquipoCliente) throws SQLException {
@@ -114,7 +112,7 @@ public class hojaDeVidaDAOImpl implements hojaDeVidaDAO {
                     verificacion_tecnicaDTO dto = new verificacion_tecnicaDTO();
                     dto.setK_id_verificacion(rs.getString("k_id_verificacion"));
                     dto.setT_descripcion(rs.getString("t_descripcion"));
-                    // Completa con más campos si los tienes
+                    // Agrega más campos si los necesitas
                     lista.add(dto);
                 }
                 return lista;
@@ -144,7 +142,7 @@ public class hojaDeVidaDAOImpl implements hojaDeVidaDAO {
                     dto.setD_valor_equipo(rs.getDouble("d_valor_equipo"));
                     dto.setD_valor_patron(rs.getDouble("d_valor_patron"));
                     dto.setT_resultado_verificacion_tecnica(rs.getString("t_resultado_verificacion_tecnica"));
-                    // Completa con más campos si los tienes
+                    // Agrega más campos si los necesitas
                     lista.add(dto);
                 }
                 return lista;
